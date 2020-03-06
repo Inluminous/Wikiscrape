@@ -139,16 +139,16 @@ def bs4search(start, target):
 
 def randomScrape(start, target, n):
     x = 1
-    while n > 0:
+    while n != 0:
         print("\u001b[33mBeginning Scrape " + str(x) +".\033[0m")
         bs4search(start, target)
         x += 1
         n -= 0 if n < 0 else 1
 
-start = "https://en.wikipedia.org/wiki/" + str(sys.argv[1])
+start = "https://en.wikipedia.org/wiki/" + (str(sys.argv[1]) if len(sys.argv) > 1 else "Special:Random")
 target = "https://en.wikipedia.org/wiki/" + (str(sys.argv[2]) if len(sys.argv) > 2 else "Psychology")
 
 if len(sys.argv) > 1:
     bs4search(start,target)
 else:
-    randomScrape(10)
+    randomScrape(start, target, -1)
